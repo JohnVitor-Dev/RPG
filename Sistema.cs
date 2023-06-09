@@ -11,7 +11,7 @@ public static class RPG
     {
 
         bool BatalhaAndamento = true;
-
+        //john
         Jogador player1 = new Jogador();
         Console.Write("(Jogador 1) Qual o seu nick? ");
         player1.Nome = player1.PegarNome();
