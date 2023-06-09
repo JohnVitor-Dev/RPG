@@ -8,7 +8,7 @@ class Sc
 	public string Ativacao;
 	
 	public Card Fcla = new Card();
-  public Card Fgen = new Card();
+    public Card Fgen = new Card();
 	public Card AD100barra100 = new Card();
 	public Card Clones1 = new Card();
 	public Card Clones2 = new Card();
