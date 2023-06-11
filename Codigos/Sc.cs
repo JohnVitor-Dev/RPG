@@ -22,6 +22,7 @@ class Sc
 	public Card N200barra200 = new Card();
 	public Card N50barra50 = new Card();
 	public Card Reflexo = new Card();
+
 	
 	
 	public int ID_Fclan;
@@ -43,8 +44,25 @@ class Sc
 	
 	
 	public void Cla(string ClaNome)
-	{	
-		if(ClaNome == "Hozuki")
+	{
+        Fcla.CardName = "Falha Clã";
+        Fgen.CardName = "Falha Gen";
+        AD100barra100.CardName = "100/100";
+        Clones1.CardName = "Clones 1";
+        Clones2.CardName = "Clones 2";
+        FugaSdano.CardName = "Fuga";
+        FugaCdano.CardName = "Fuga Com Dano";
+        Camu.CardName = "Camuflagem";
+        Barreira.CardName = "Barreira";
+        Kunais.CardName = "Kunais";
+        TaiEspecial.CardName = "Taijutsu Especial";
+        Paralisia.CardName = "Paralisia";
+        N200barra200.CardName = "200/200";
+        N50barra50.CardName = "50/50";
+        Reflexo.CardName = "Reflexo";
+
+
+        if (ClaNome == "Hozuki")
 		{	
 			Ativacao = "Red";
 			
@@ -95,7 +113,7 @@ class Sc
 			Reflexo.Dano = 0;
 			Reflexo.Ck = 40;
 			
-		} else if(ClaNome == "Senju")
+		} /* else if(ClaNome == "Senju")
 		{
 			
 			Ativacao = "Red";
@@ -146,8 +164,9 @@ class Sc
 			N50barra50.Ck = 50;
 			Reflexo.Dano = 0;
 			Reflexo.Ck = 40;
-		}
+		 */
 	}
+
 	
 	
 	

@@ -10,13 +10,19 @@ public static class RPG
 {
     public static void Main()
     {
+        // Var Globais
         int GanhadorLuta = 0;
         bool BatalhaAndamento = true;
 
+        // Jogadores
         Jogador player1 = new Jogador();
         Jogador player2 = new Jogador();
-        Sc CardsPlayer1 = new Sc();
-        Sc CardsPlayer2 = new Sc();
+        string Player1Group;
+        string Player2Group;
+
+        // Combate
+        Combate Fight = new Combate();
+        
 
         void CriarJogadores()
         {
@@ -25,7 +31,8 @@ public static class RPG
             player1.Nome = player1.PegarNome();
             Console.Write("(Jogador 1) Qual o seu clã? ");
             player1.WhatCla = player1.PegarCla();
-            CardsPlayer1.Cla(player1.WhatCla);
+            Player1Group = player1.WhatCla;
+            Fight.CardsPlayer1.Cla(Player1Group);
 
             Console.WriteLine("");
 
@@ -34,24 +41,31 @@ public static class RPG
             player2.Nome = player2.PegarNome();
             Console.Write("(Jogador 2) Qual o seu clã? ");
             player2.WhatCla = player2.PegarCla();
-            CardsPlayer2.Cla(player2.WhatCla);
+            Player2Group = player2.WhatCla;
+            Fight.CardsPlayer2.Cla(Player2Group);
+
+            Console.Clear();
         }
         
         int JoKenPo()
         {
+            // Var JoKenPo
             int Ganhador_JKP = 0;
             string Player1_JKP = "";
             string Player2_JKP = "";
             
+            // JoKenPo
             while(Ganhador_JKP == 0)
             {
                 Console.Clear();
+
                 Console.WriteLine("JO KEN PO!!!\n");
                 Console.WriteLine($"{player1.Nome} escolha uma opção: ");
                 Console.WriteLine(" 1 - Pedra \n 2 - Papel \n 3 - Tesoura \n");
                 Player1_JKP = Console.ReadLine();
                 int Player1I_JKP = int.Parse(Player1_JKP);
                 Console.Clear();
+
                 Console.WriteLine($"{player2.Nome} escolha uma opção: ");
                 Console.WriteLine(" 1 - Pedra \n 2 - Papel \n 3 - Tesoura \n");
                 Player2_JKP = Console.ReadLine();
@@ -81,8 +95,21 @@ public static class RPG
             return Ganhador_JKP;
         }
 
+        void Tabela()
+        {
+            Console.WriteLine("--------------------------");
+            Console.WriteLine($"({player1.Nome})() {player1.Vida}/{player1.Chakra}");
+            //Console.WriteLine(Usados1);
+            Console.WriteLine("\nVs\n\n");
+            Console.WriteLine($"({player2.Nome}) {player2.Vida}/{player2.Chakra}\n");
+            //Console.WriteLine(Usados2);
+            Console.WriteLine("--------------------------");
+         }
+
         void VerificarNegativo()
         {
+            // Previnir que a Vida e o Chakra fiquem negativos
+
             if (player1.Vida <= 0)
             {
                 player1.Vida = 0;
@@ -107,6 +134,8 @@ public static class RPG
 
         int VerificarGanhador()
         {
+            // Definir Ganhador
+
             int ValorDeRetorno = 0;
 
             if (player1.Vida == 0 && player2.Vida > 0)
@@ -135,7 +164,6 @@ public static class RPG
             return ValorDeRetorno;
         }
 
-
         int Batalha()
         {
             int GanhadorBatalha = 0;
@@ -161,16 +189,13 @@ public static class RPG
                             OrdemDeJogada = 1;
                             MensagemExibida1 = true;
                             break;
+                        default:
+                            Console.WriteLine("Erro 02");
+                            break;
                     }
                 }
 
-                Console.WriteLine("--------------------------");
-                Console.WriteLine($"({player1.Nome}) {player1.Vida}/{player1.Chakra}");
-                //Console.WriteLine(Usados1);
-                Console.WriteLine("\nVs\n\n");
-                Console.WriteLine($"({player2.Nome}) {player2.Vida}/{player2.Chakra}\n");
-                //Console.WriteLine(Usados2);
-                Console.WriteLine("--------------------------");
+                Tabela();
 
                 if (OrdemDeJogada == 1)
                 {
@@ -180,6 +205,8 @@ public static class RPG
 
                     Console.WriteLine($"{player2.Nome} escolha uma carta: ");
                     Carta2 = Console.ReadLine();
+
+                    Fight.FightSystem(OrdemDeJogada, Carta1, Carta2);
 
                     OrdemDeJogada = 2;
 
@@ -193,18 +220,13 @@ public static class RPG
                     Console.WriteLine($"{player1.Nome} escolha uma carta: ");
                     Carta1 = Console.ReadLine();
 
+                    Fight.FightSystem(OrdemDeJogada, Carta2, Carta1);
+
                     OrdemDeJogada = 1;
 
                 }
 
-                if (Carta1 == CardsPlayer1.ID_Kunais.ToString())
-                {
-                    player1.Vida = player1.Vida - CardsPlayer2.Kunais.Dano;
-                    //player2.Vida = player2.Vida - CardsPlayer1.Kis.Danunao;
-                    //Console.WriteLine($"Vida player1 = {player1.Vida}, Player 2 = {player2.Vida}");
-
-                }
-
+                
                 VerificarNegativo();
                 GanhadorBatalha = VerificarGanhador();
 
@@ -215,11 +237,13 @@ public static class RPG
                 } else if(GanhadorBatalha == 1)
                 {
                     BatalhaAndamento = false;
+                    Console.Clear();
                     break;
 
                 } else if(GanhadorBatalha == 2)
                 {
                     BatalhaAndamento = false;
+                    Console.Clear();
                     break;
 
                 }
@@ -233,33 +257,22 @@ public static class RPG
         }
 
         CriarJogadores();
-        Console.Clear();
         GanhadorLuta = Batalha();
-        Console.Clear();
-
-        Console.WriteLine("--------------------------");
-        Console.WriteLine($"({player1.Nome}) {player1.Vida}/{player1.Chakra}");
-        //Console.WriteLine(Usados1);
-        Console.WriteLine("\nVs\n\n");
-        Console.WriteLine($"({player2.Nome}) {player2.Vida}/{player2.Chakra}\n");
-        //Console.WriteLine(Usados2);
-        Console.WriteLine("--------------------------");
-
-        if(GanhadorLuta == 1)
+        Tabela();
+        
+        switch(GanhadorLuta)
         {
-            Console.WriteLine($"{player1.Nome} é o ganhador!!");
-        } else if (GanhadorLuta == 2)
-        {
-            Console.WriteLine($"{player2.Nome} é o ganhador!!");
-        } else
-        {
-            Console.WriteLine("Erro 19");
+            case 1:
+                Console.WriteLine($"{player1.Nome} é o ganhador!!");
+                break;
+            case 2:
+                Console.WriteLine($"{player2.Nome} é o ganhador!!");
+                break;
+            default:
+                Console.WriteLine("Erro 01");
+                break;
         }
-
-
-
-
-
+        
     }
 }
 
