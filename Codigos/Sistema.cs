@@ -172,8 +172,8 @@ public static class RPG
 
             while (BatalhaAndamento == true)
             {
-                string Carta1 = "";
-                string Carta2 = "";
+                int Carta1;
+                int Carta2;
 
                 if (!MensagemExibida1)
                 {
@@ -200,11 +200,11 @@ public static class RPG
                 if (OrdemDeJogada == 1)
                 {
                     Console.WriteLine($"{player1.Nome} escolha uma carta: ");
-                    Carta1 = Console.ReadLine();
+                    Carta1 = Convert.ToInt32(Console.ReadLine());
 
 
                     Console.WriteLine($"{player2.Nome} escolha uma carta: ");
-                    Carta2 = Console.ReadLine();
+                    Carta2 = Convert.ToInt32(Console.ReadLine());
 
                     Fight.FightSystem(OrdemDeJogada, Carta1, Carta2);
 
@@ -215,12 +215,12 @@ public static class RPG
                 {
 
                     Console.WriteLine($"{player2.Nome} escolha uma carta: ");
-                    Carta2 = Console.ReadLine();
+                    Carta2 = Convert.ToInt32(Console.ReadLine());
 
                     Console.WriteLine($"{player1.Nome} escolha uma carta: ");
-                    Carta1 = Console.ReadLine();
+                    Carta1 = Convert.ToInt32(Console.ReadLine());
 
-                    Fight.FightSystem(OrdemDeJogada, Carta2, Carta1);
+                    Fight.FightSystem(OrdemDeJogada, Carta1, Carta2);
 
                     OrdemDeJogada = 1;
 

@@ -2,6 +2,15 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+namespace ScCards;
+
+class Card
+{
+    public string CardName;
+    public int Dano;
+    public int Ck;
+    public bool UsedCard = false;
+}
 
 class Sc 
 {
@@ -22,26 +31,6 @@ class Sc
 	public Card N200barra200 = new Card();
 	public Card N50barra50 = new Card();
 	public Card Reflexo = new Card();
-
-	
-	
-	public int ID_Fclan;
-	public int ID_Fgen;
-	public int ID_AD100barra100;
-	public int ID_Clones1;
-	public int ID_Clones2;
-	public int ID_FugaSdano;
-	public int ID_FugaCdano;
-	public int ID_Camu;
-	public int ID_Barreira;
-    public int ID_Kunais;
-	public int ID_TaiEspecial;
-	public int ID_Paralisia;
-	public int ID_N200barra200;
-	public int ID_N50barra50;
-	public int ID_Reflexo;
-	
-	
 	
 	public void Cla(string ClaNome)
 	{
@@ -65,22 +54,6 @@ class Sc
         if (ClaNome == "Hozuki")
 		{	
 			Ativacao = "Red";
-			
-			ID_Fclan = 1;
-		    ID_Fgen = 2;
-		    ID_AD100barra100 = 3;
-			ID_Clones1 = 4;
-			ID_Clones2 = 5;
-		    ID_FugaSdano = 6;
-			ID_FugaCdano = 7;
-			ID_Camu = 8;
-			ID_Barreira = 9;
-			ID_Kunais = 10;
-			ID_TaiEspecial = 11;
-			ID_Paralisia = 12;
-			ID_N200barra200 = 13;
-			ID_N50barra50 = 14;
-			ID_Reflexo = 15;
 			
 			Fcla.Dano = 0;
 			Fcla.Ck = 40;
